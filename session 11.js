@@ -35,12 +35,24 @@ let products = [
     inStock: true,
   },
 ];
-function findByID()
-let findByID = prompt("Mòi bạn nhập ID");
-let result = findByID.filter((acc, value)=>{
-    return result[1];
-});
-console.log(result);
+function validateProductPrices(productList) {
+  const isValid = productList.every(product => product.price > 0);
 
-function stockAvailabilty();
+  if (isValid) {
+    console.log("Dữ liệu bảng giá hợp lệ");
+  } else {
+    console.log("Phát hiện sản phẩm chưa cập nhật giá");
+  }
+}
+function formatCatalogDisplay(productList) {
+  return productList.map(product => {
+    const status = product.inStock ? "Còn hàng" : "Hết hàng";
+    return `${product.name} - Giá: $${product.price} | Trạng thái: ${status}`;
+  });
+}
+
+let catalogDisplay = formatCatalogDisplay(products);
+
+console.log(catalogDisplay);
+
 
